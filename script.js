@@ -21,7 +21,13 @@ let rolling = false;
 let rollTimer = null;
 const faces = ['⚀','⚁','⚂','⚃','⚄','⚅'];
 
-function top(){ window.scrollTo(0, 0); }
+function top(){ window.scrollTo({top:0,left:0,behavior:'auto'}); }
+
+function clearHash(){
+  if(location.hash){
+    history.replaceState(null, document.title, location.pathname + location.search);
+  }
+}
 
 function toastMessage(text){
   toast.textContent = text;
@@ -43,7 +49,6 @@ async function copyText(text){
       return true;
     }
   }catch(err){}
-
   try{
     const area = document.createElement('textarea');
     area.value = text;
@@ -57,9 +62,7 @@ async function copyText(text){
     const ok = document.execCommand('copy');
     area.remove();
     return ok;
-  }catch(err){
-    return false;
-  }
+  }catch(err){ return false; }
 }
 
 function telegramUrl(text){
@@ -67,17 +70,35 @@ function telegramUrl(text){
 }
 
 function stopRolling(){
-  if(rollTimer){
-    clearInterval(rollTimer);
-    rollTimer = null;
-  }
+  if(rollTimer){ clearInterval(rollTimer); rollTimer = null; }
   rolling = false;
-  rollBtn.dataset.rolling = '0';
-  rollBtn.disabled = false;
+  if(rollBtn){
+    rollBtn.dataset.rolling = '0';
+    rollBtn.disabled = false;
+  }
+}
+
+function showGame(){
+  stopRolling();
+  clearHash();
+  hero.hidden = true;
+  final.hidden = true;
+  game.hidden = false;
+  top();
+}
+
+function showHero(){
+  stopRolling();
+  clearHash();
+  game.hidden = true;
+  final.hidden = true;
+  hero.hidden = false;
+  top();
 }
 
 function resetGame(){
   stopRolling();
+  clearHash();
   selectedTime = '';
   game.hidden = false;
   hero.hidden = true;
@@ -90,12 +111,9 @@ function resetGame(){
   timeButtons.forEach(btn => btn.removeAttribute('aria-pressed'));
 }
 
-acceptBtn.addEventListener('click', () => {
-  stopRolling();
-  hero.hidden = true;
-  final.hidden = true;
-  game.hidden = false;
-  top();
+acceptBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  showGame();
 });
 
 laterBtn.addEventListener('click', () => {
@@ -115,7 +133,6 @@ rollBtn.addEventListener('click', () => {
   rollTimer = setInterval(() => {
     dice.textContent = face(Math.floor(Math.random() * 6) + 1);
     ticks++;
-
     if(ticks >= 9){
       clearInterval(rollTimer);
       rollTimer = null;
@@ -136,7 +153,6 @@ timeButtons.forEach(btn => btn.addEventListener('click', async () => {
   if(rolling) return;
   selectedTime = btn.dataset.time;
   const text = makeMessage(selectedTime);
-
   timeButtons.forEach(item => item.removeAttribute('aria-pressed'));
   btn.setAttribute('aria-pressed', 'true');
   messageBox.textContent = text;
@@ -144,6 +160,7 @@ timeButtons.forEach(btn => btn.addEventListener('click', async () => {
   telegramBtn.href = telegramUrl(text);
   game.hidden = true;
   final.hidden = false;
+  clearHash();
   top();
 
   const copied = await copyText(text);
@@ -172,15 +189,10 @@ telegramBtn.addEventListener('click', () => {
   telegramBtn.href = telegramUrl(makeMessage(selectedTime));
 });
 
-backBtn.addEventListener('click', () => {
-  stopRolling();
-  game.hidden = true;
-  final.hidden = true;
-  hero.hidden = false;
-  top();
-});
-
+backBtn.addEventListener('click', showHero);
 restartBtn.addEventListener('click', () => {
   resetGame();
   top();
 });
+
+if(location.hash === '#accepted') showGame();
