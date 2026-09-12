@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#120b08">
+  <meta name="theme-color" content="#100806">
   <meta name="description" content="Маленькое приглашение в большую игру.">
   <title>Маша, давай в Катан?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,69 +14,74 @@
 <body>
 <main class="app">
   <section class="screen hero" id="hero">
-    <div class="ambient"></div>
-    <header class="topbar"><div><span class="logo">CATAN</span><span class="logo-sub">GOOD GAMES · BETTER US</span></div><span class="heart">♡</span></header>
+    <div class="grain"></div>
+    <header class="topbar">
+      <div class="brand"><strong>CATAN</strong><span>GOOD GAMES · BETTER US</span></div>
+      <span class="heart">♡</span>
+    </header>
 
-    <div class="intro">
-      <p class="eyebrow">ОДНО МАЛЕНЬКОЕ ПРЕДЛОЖЕНИЕ</p>
+    <div class="hero-copy">
+      <p class="eyebrow"><span>01</span> ОДНО МАЛЕНЬКОЕ ПРЕДЛОЖЕНИЕ</p>
       <h1>Маша,<br><em>давай в Катан?</em></h1>
       <p class="lead">Я собрал наш маленький остров.<br>Осталось только позвать тебя.</p>
     </div>
 
-    <div class="table" aria-hidden="true">
-      <div class="island island-forest"><span>5</span><i>♣</i></div>
-      <div class="island island-mountain"><span>8</span><i>♢</i></div>
-      <div class="island island-field"><span>9</span><i>✦</i></div>
-      <div class="island island-pasture"><span>4</span><i>♧</i></div>
-      <div class="road road-a"></div><div class="road road-b"></div>
-      <div class="settlement"><b></b><i></i></div>
+    <div class="island-map" aria-hidden="true">
+      <div class="hex water h1"></div><div class="hex forest h2"><b>5</b></div><div class="hex hills h3"><b>8</b></div>
+      <div class="hex field h4"><b>9</b></div><div class="hex pasture h5"><b>4</b></div><div class="hex mountain h6"></div>
+      <div class="road r1"></div><div class="road r2"></div><div class="settlement"></div>
     </div>
 
-    <article class="paper">
-      <div class="paper-tape"></div><span class="paper-heart">♡</span>
-      <h2>Маша,</h2><h3>давай в Катан?</h3><div class="red-line"></div>
+    <article class="invitation-card">
+      <div class="card-top"><span>МАША</span><span>♡</span></div>
+      <h2>Давай<br><em>в Катан?</em></h2>
+      <div class="red-stroke"></div>
       <p>Нас ждут ресурсы, дороги,<br>города и немного<br>здоровой конкуренции :)</p>
       <p class="hand">Готова отправиться<br>в новое приключение вместе?</p>
-      <div class="paper-sign">Твой партнёр<br><small>SAME TEAM. ALWAYS.</small></div>
+      <div class="card-note">SAME TEAM.<br><strong>BETTER GAMES.</strong></div>
     </article>
 
     <div class="actions">
-      <button class="primary" id="acceptBtn"><span>⚄</span> ПРИНЯТЬ ПРИГЛАШЕНИЕ <b>→</b></button>
+      <button class="primary" id="acceptBtn"><span>✦</span> ПРИНЯТЬ ПРИГЛАШЕНИЕ <b>→</b></button>
       <button class="secondary" id="laterBtn">МОЖЕТ ПОЗЖЕ?</button>
     </div>
-    <p class="footer-mark">GOOD GAMES · BETTER US <span>♡</span></p>
+    <p class="footer-mark">CATAN · GOOD GAMES · BETTER US <span>♡</span></p>
   </section>
 
   <section class="screen game" id="accepted" hidden>
-    <div class="ambient"></div>
-    <header class="inner-top"><span>CATAN</span><span>ШАГ 1 / 2</span></header>
+    <div class="grain"></div>
+    <header class="page-head">
+      <div class="brand"><strong>CATAN</strong><span>THE NEXT MOVE</span></div>
+      <span class="step">01 <i>/</i> 02</span>
+    </header>
     <div class="game-content">
-      <p class="eyebrow">ПРИГЛАШЕНИЕ ПРИНЯТО</p>
-      <div class="dice-card"><div class="dice" id="dice">⚄</div><span>СУДЬБА РЕШАЕТ</span></div>
+      <p class="eyebrow"><span>ПРИГЛАШЕНИЕ ПРИНЯТО</span></p>
+      <div class="rule"><span></span><b>СУДЬБА РЕШАЕТ</b><span></span></div>
+      <div class="dice-wrap"><div class="dice" id="dice">⚄</div></div>
       <h2>Бросим кубик<br><em>и узнаем знак.</em></h2>
       <p class="instruction" id="result">Нажми на кнопку — кубик решит,<br>с чего начнётся наша партия.</p>
-      <button class="primary roll" id="rollBtn">🎲 БРОСИТЬ КУБИК <b>↻</b></button>
+      <button class="primary roll" id="rollBtn"><span>⚄</span> БРОСИТЬ КУБИК <b>↻</b></button>
       <div class="choice" id="choice" hidden>
-        <p class="choice-title">ШАГ 2 · КОГДА ИГРАЕМ?</p>
-        <p class="choice-hint">Выбери вариант. После выбора сообщение автоматически скопируется.</p>
+        <p class="choice-title">02 / КОГДА ИГРАЕМ?</p>
+        <p class="choice-hint">Выбери день — сообщение<br>сразу скопируется.</p>
         <div class="choice-grid"><button data-time="Сегодня">Сегодня</button><button data-time="Завтра">Завтра</button><button data-time="На выходных">На выходных</button></div>
       </div>
-      <button class="back" id="backBtn">← Вернуться</button>
+      <button class="back" id="backBtn">← Вернуться к приглашению</button>
     </div>
   </section>
 
   <section class="screen final" id="final" hidden>
-    <div class="ambient"></div>
+    <div class="grain"></div>
     <div class="final-content">
-      <div class="success-icon">✓</div>
-      <p class="eyebrow">ШАГ 2 · ГОТОВО</p>
-      <h2>Отличный выбор,<br><em>Маша.</em></h2>
+      <div class="final-mark">✦</div>
+      <p class="eyebrow"><span>02 / 02</span> ГОТОВО</p>
+      <h2>Отличный<br><em>выбор, Маша.</em></h2>
       <p class="final-text" id="finalText">Сообщение готово.</p>
       <div class="message-box" id="messageBox"></div>
-      <div class="copied"><span>✓</span> ТЕКСТ АВТОМАТИЧЕСКИ СКОПИРОВАН</div>
+      <div class="copied"><span>✓</span> ТЕКСТ СКОПИРОВАН</div>
       <button class="primary copy" id="copyBtn">СКОПИРОВАТЬ ЕЩЁ РАЗ <b>✓</b></button>
       <a class="telegram" id="telegramBtn" href="#">ОТПРАВИТЬ МНЕ В TELEGRAM <b>→</b></a>
-      <p class="tiny">Нажми кнопку выше — откроется Telegram<br>с уже готовым текстом. Останется нажать «Отправить».</p>
+      <p class="tiny">Telegram откроется с готовым текстом.<br>Останется нажать «Отправить».</p>
       <button class="back" id="restartBtn">← Начать заново</button>
     </div>
   </section>
