@@ -1,99 +1,88 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#1b0e09" />
-  <meta name="description" content="Маленькое приглашение в большую игру." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#120b08">
+  <meta name="description" content="Маленькое приглашение в большую игру.">
   <title>Маша, давай в Катан?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app">
-    <section class="hero" id="hero">
-      <div class="wood-grain"></div>
-      <header class="topbar">
-        <span class="brand">CATAN</span>
-        <span class="brand-sub">GOOD GAMES · BETTER US</span>
-        <span class="heart">♡</span>
-      </header>
+<main class="app">
+  <section class="screen hero" id="hero">
+    <div class="ambient"></div>
+    <header class="topbar"><div><span class="logo">CATAN</span><span class="logo-sub">GOOD GAMES · BETTER US</span></div><span class="heart">♡</span></header>
 
-      <div class="hero-title">
-        <p class="eyebrow">ОДНО МАЛЕНЬКОЕ ПРЕДЛОЖЕНИЕ</p>
-        <h1>Маша,<br><em>давай в Катан?</em></h1>
-        <p class="lead">Я собрал наш маленький остров,<br>чтобы пригласить тебя в игру.</p>
+    <div class="intro">
+      <p class="eyebrow">ОДНО МАЛЕНЬКОЕ ПРЕДЛОЖЕНИЕ</p>
+      <h1>Маша,<br><em>давай в Катан?</em></h1>
+      <p class="lead">Я собрал наш маленький остров.<br>Осталось только позвать тебя.</p>
+    </div>
+
+    <div class="table" aria-hidden="true">
+      <div class="island island-forest"><span>5</span><i>♣</i></div>
+      <div class="island island-mountain"><span>8</span><i>♢</i></div>
+      <div class="island island-field"><span>9</span><i>✦</i></div>
+      <div class="island island-pasture"><span>4</span><i>♧</i></div>
+      <div class="road road-a"></div><div class="road road-b"></div>
+      <div class="settlement"><b></b><i></i></div>
+    </div>
+
+    <article class="paper">
+      <div class="paper-tape"></div><span class="paper-heart">♡</span>
+      <h2>Маша,</h2><h3>давай в Катан?</h3><div class="red-line"></div>
+      <p>Нас ждут ресурсы, дороги,<br>города и немного<br>здоровой конкуренции :)</p>
+      <p class="hand">Готова отправиться<br>в новое приключение вместе?</p>
+      <div class="paper-sign">Твой партнёр<br><small>SAME TEAM. ALWAYS.</small></div>
+    </article>
+
+    <div class="actions">
+      <button class="primary" id="acceptBtn"><span>⚄</span> ПРИНЯТЬ ПРИГЛАШЕНИЕ <b>→</b></button>
+      <button class="secondary" id="laterBtn">МОЖЕТ ПОЗЖЕ?</button>
+    </div>
+    <p class="footer-mark">GOOD GAMES · BETTER US <span>♡</span></p>
+  </section>
+
+  <section class="screen game" id="accepted" hidden>
+    <div class="ambient"></div>
+    <header class="inner-top"><span>CATAN</span><span>ШАГ 1 / 2</span></header>
+    <div class="game-content">
+      <p class="eyebrow">ПРИГЛАШЕНИЕ ПРИНЯТО</p>
+      <div class="dice-card"><div class="dice" id="dice">⚄</div><span>СУДЬБА РЕШАЕТ</span></div>
+      <h2>Бросим кубик<br><em>и узнаем знак.</em></h2>
+      <p class="instruction" id="result">Нажми на кнопку — кубик решит,<br>с чего начнётся наша партия.</p>
+      <button class="primary roll" id="rollBtn">🎲 БРОСИТЬ КУБИК <b>↻</b></button>
+      <div class="choice" id="choice" hidden>
+        <p class="choice-title">ШАГ 2 · КОГДА ИГРАЕМ?</p>
+        <p class="choice-hint">Выбери вариант. После выбора сообщение автоматически скопируется.</p>
+        <div class="choice-grid"><button data-time="Сегодня">Сегодня</button><button data-time="Завтра">Завтра</button><button data-time="На выходных">На выходных</button></div>
       </div>
+      <button class="back" id="backBtn">← Вернуться</button>
+    </div>
+  </section>
 
-      <div class="island" aria-hidden="true">
-        <div class="hex forest"><span>5</span></div>
-        <div class="hex mountain"><span>8</span></div>
-        <div class="hex field"><span>9</span></div>
-        <div class="hex pasture"><span>4</span></div>
-        <div class="sea"></div>
-        <div class="piece road-one"></div><div class="piece road-two"></div>
-        <div class="piece house"></div>
-      </div>
+  <section class="screen final" id="final" hidden>
+    <div class="ambient"></div>
+    <div class="final-content">
+      <div class="success-icon">✓</div>
+      <p class="eyebrow">ШАГ 2 · ГОТОВО</p>
+      <h2>Отличный выбор,<br><em>Маша.</em></h2>
+      <p class="final-text" id="finalText">Сообщение готово.</p>
+      <div class="message-box" id="messageBox"></div>
+      <div class="copied"><span>✓</span> ТЕКСТ АВТОМАТИЧЕСКИ СКОПИРОВАН</div>
+      <button class="primary copy" id="copyBtn">СКОПИРОВАТЬ ЕЩЁ РАЗ <b>✓</b></button>
+      <a class="telegram" id="telegramBtn" href="#">ОТПРАВИТЬ МНЕ В TELEGRAM <b>→</b></a>
+      <p class="tiny">Нажми кнопку выше — откроется Telegram<br>с уже готовым текстом. Останется нажать «Отправить».</p>
+      <button class="back" id="restartBtn">← Начать заново</button>
+    </div>
+  </section>
 
-      <article class="parchment">
-        <span class="paper-heart">♡</span>
-        <h2>Маша,</h2>
-        <h3>давай в Катан?</h3>
-        <div class="red-line"></div>
-        <p>Нас ждут ресурсы, дороги,<br>города и, конечно, немного<br>здоровой конкуренции :)</p>
-        <p class="handwritten">Готова отправиться<br>в новое приключение вместе?</p>
-        <div class="paper-sign">Твой партнёр<br><small>SAME TEAM. ALWAYS.</small></div>
-      </article>
-
-      <div class="actions">
-        <button class="primary" id="acceptBtn"><span>⚄</span> ПРИНЯТЬ ПРИГЛАШЕНИЕ <b>→</b></button>
-        <button class="secondary" id="laterBtn">МОЖЕТ ПОЗЖЕ?</button>
-      </div>
-      <p class="signature">GOOD GAMES · BETTER US <span>♡</span></p>
-    </section>
-
-    <section class="accepted" id="accepted" hidden>
-      <div class="wood-grain"></div>
-      <header class="inner-top"><span>CATAN</span><span>♡</span></header>
-      <div class="accepted-content">
-        <p class="eyebrow">ШАГ 1 · НАЧИНАЕМ ПАРТИЮ</p>
-        <div class="dice-wrap"><div class="dice" id="dice">⚄</div></div>
-        <h2>Сначала бросим<br><em>кубики.</em></h2>
-        <p class="instruction">Нажми на кнопку ниже.<br>Пусть остров решит, что будет дальше.</p>
-        <button class="primary roll" id="rollBtn">🎲 БРОСИТЬ КУБИК <b>↻</b></button>
-        <div class="choice" id="choice" hidden>
-          <p class="choice-title">ШАГ 2 · КОГДА ИГРАЕМ?</p>
-          <p class="choice-hint">Выбери удобный вариант — в конце появится готовое сообщение.</p>
-          <div class="choice-grid">
-            <button data-time="Сегодня">Сегодня</button>
-            <button data-time="Завтра">Завтра</button>
-            <button data-time="На выходных">На выходных</button>
-          </div>
-        </div>
-        <button class="back" id="backBtn">← Вернуться к приглашению</button>
-      </div>
-    </section>
-
-    <section class="final" id="final" hidden>
-      <div class="wood-grain"></div>
-      <div class="final-card">
-        <div class="final-top"><span>ПАРТИЯ СОСТОИТСЯ</span><span>♡</span></div>
-        <p class="eyebrow">ГОТОВО</p>
-        <div class="check">✓</div>
-        <h2>Отличный выбор,<br><em>Маша.</em></h2>
-        <p class="final-text" id="finalText">Сообщение готово.</p>
-        <div class="message-box" id="messageBox"></div>
-        <button class="primary copy" id="copyBtn">СКОПИРОВАТЬ СООБЩЕНИЕ <b>✓</b></button>
-        <a class="telegram" id="telegramBtn" href="#">ОТПРАВИТЬ В TELEGRAM <b>→</b></a>
-        <p class="tiny">Сначала сообщение автоматически копируется.<br>Потом можно открыть Telegram и отправить его мне.</p>
-        <button class="back" id="restartBtn">← Начать заново</button>
-      </div>
-    </section>
-
-    <div class="toast" id="toast" role="status"></div>
-  </main>
-  <script src="script.js"></script>
+  <div class="toast" id="toast" role="status"></div>
+</main>
+<script src="script.js"></script>
 </body>
 </html>
