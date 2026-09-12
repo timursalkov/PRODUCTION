@@ -18,6 +18,7 @@ const timeButtons = [...document.querySelectorAll('[data-time]')];
 
 let selectedTime = '';
 let rolling = false;
+let rollTimer = null;
 const faces = ['⚀','⚁','⚂','⚃','⚄','⚅'];
 
 function top(){ window.scrollTo(0, 0); }
@@ -65,9 +66,19 @@ function telegramUrl(text){
   return `https://t.me/share/url?url=&text=${encodeURIComponent(text)}`;
 }
 
-function resetGame(){
-  selectedTime = '';
+function stopRolling(){
+  if(rollTimer){
+    clearInterval(rollTimer);
+    rollTimer = null;
+  }
   rolling = false;
+  rollBtn.dataset.rolling = '0';
+  rollBtn.disabled = false;
+}
+
+function resetGame(){
+  stopRolling();
+  selectedTime = '';
   game.hidden = false;
   hero.hidden = true;
   final.hidden = true;
@@ -76,12 +87,11 @@ function resetGame(){
   dice.textContent = '⚄';
   dice.style.transform = 'rotate(0) scale(1)';
   rollBtn.textContent = '⚄ БРОСИТЬ КУБИК';
-  rollBtn.disabled = false;
-  rollBtn.dataset.rolling = '0';
   timeButtons.forEach(btn => btn.removeAttribute('aria-pressed'));
 }
 
 acceptBtn.addEventListener('click', () => {
+  stopRolling();
   hero.hidden = true;
   final.hidden = true;
   game.hidden = false;
@@ -102,12 +112,13 @@ rollBtn.addEventListener('click', () => {
   let ticks = 0;
   dice.style.transform = 'rotate(720deg) scale(1.08)';
 
-  const timer = setInterval(() => {
+  rollTimer = setInterval(() => {
     dice.textContent = face(Math.floor(Math.random() * 6) + 1);
     ticks++;
 
     if(ticks >= 9){
-      clearInterval(timer);
+      clearInterval(rollTimer);
+      rollTimer = null;
       const n = Math.floor(Math.random() * 6) + 1;
       dice.textContent = face(n);
       dice.style.transform = 'rotate(0) scale(1)';
@@ -162,7 +173,7 @@ telegramBtn.addEventListener('click', () => {
 });
 
 backBtn.addEventListener('click', () => {
-  rolling = false;
+  stopRolling();
   game.hidden = true;
   final.hidden = true;
   hero.hidden = false;
