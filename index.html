@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#17100d" />
+  <title>Маша, давай в Катан?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="hero" id="hero">
+      <div class="grain"></div>
+      <header class="topbar"><span class="brand">CATAN</span><span class="mini-heart">♡</span></header>
+      <div class="hero-copy">
+        <p class="eyebrow">ОДНО МАЛЕНЬКОЕ ПРЕДЛОЖЕНИЕ</p>
+        <h1>Маша,<br><em>давай в Катан?</em></h1>
+        <p class="lead">Я собрал наш маленький остров.<br>Осталось только позвать тебя.</p>
+      </div>
+      <div class="table-scene" aria-hidden="true"><div class="board-glow"></div><div class="hex h1">🌲<span>5</span></div><div class="hex h2">⛰️<span>8</span></div><div class="hex h3">🌾<span>9</span></div><div class="hex h4">🐑<span>4</span></div><div class="road r1"></div><div class="road r2"></div><div class="house"></div></div>
+      <div class="note"><div class="note-pin">♡</div><p>Нас ждут ресурсы,<br>дороги, города<br>и немного здоровой<br>конкуренции :)</p><small>Твой партнёр<br>по большим и маленьким победам</small></div>
+      <div class="actions"><button class="primary" id="acceptBtn"><span>🎲</span> ПРИНЯТЬ ПРИГЛАШЕНИЕ <b>→</b></button><button class="secondary" id="laterBtn">МОЖЕТ ПОЗЖЕ?</button></div>
+      <p class="signature">GOOD GAMES · BETTER US <span>♡</span></p>
+    </section>
+
+    <section class="accepted" id="accepted" hidden>
+      <div class="accepted-bg"></div>
+      <div class="accepted-content">
+        <p class="eyebrow">ПРИГЛАШЕНИЕ ПРИНЯТО</p>
+        <div class="dice" id="dice">🎲</div>
+        <h2>Тогда строим<br><em>наш остров.</em></h2>
+        <p class="result" id="result">Брось кубик — пусть судьба решит,<br>с чего начнётся наша партия.</p>
+        <button class="primary roll" id="rollBtn">БРОСИТЬ КУБИК <b>↻</b></button>
+        <div class="choice" id="choice" hidden><p>Когда играем?</p><div class="choice-grid"><button data-time="Сегодня">Сегодня</button><button data-time="Завтра">Завтра</button><button data-time="На выходных">На выходных</button></div></div>
+        <button class="back" id="backBtn">← Вернуться к приглашению</button>
+      </div>
+    </section>
+    <div class="toast" id="toast" role="status"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
